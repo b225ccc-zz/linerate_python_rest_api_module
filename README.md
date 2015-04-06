@@ -1,2 +1,20 @@
-# linerate_python_rest_api_module
-LineRate Python REST API Module
+# LineRate Python REST API Module
+An interface to the [LineRate](https://linerate.f5.com/) REST API
+
+## Example
+
+```
+import LinerateRestClient as lr_rest
+
+# get
+client = lr_rest.Connection('172.16.87.153')
+print client.get('/config/system/hostname')
+
+# set
+client.put('/config/system/hostname', 'NEW_HOSTNAME')
+```
+
+## Notes
+
+* Tested with Python 2.7
+* LineRate [REST API docs](https://docs.lineratesystems.com/093Release_2.5/250REST_API_Reference_Guide)
