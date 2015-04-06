@@ -27,7 +27,10 @@ class RestNode(object):
 
         self.path = path
         self.parsed_json = json.loads(data)
-        self.node_data = self.parsed_json[path]
+
+        # 'path' key won't exist in PUT response
+        if path in self.parsed_json:
+            self.node_data = self.parsed_json[path]
 
     @property
     def type(self):
@@ -131,7 +134,7 @@ class Connection(object):
                             'data': data, 
                             'type': data_type, 
                             'default': default})
-        print payload
+        #print payload
         try:
             r = self.session.put(path,
                                  data=payload,
@@ -142,8 +145,7 @@ class Connection(object):
             print sys.exc_info()
         else:
             if self.check_response(r, self.ok_codes['put']):
-                return True
-
+                return repr(RestNode(node, r.text))
 
 
     def delete(self, node):
@@ -170,8 +172,7 @@ class Connection(object):
 
 
     def write_mem(self):
-        self.put('/exec/system/util/copy', 'running-config|startup-config')
-
+        return self.put('/exec/system/util/copy', 'running-config|startup-config')
 
 
 if __name__ == "__main__":

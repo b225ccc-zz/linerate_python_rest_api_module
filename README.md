@@ -1,13 +1,15 @@
 # LineRate Python REST API Module
-An interface to the [LineRate](https://linerate.f5.com/) REST API
+A Python interface to the [LineRate](https://linerate.f5.com/) REST API
 
 ## Example
 
 ```python
 import LinerateRestClient as lr_rest
 
-# get
+# connect
 client = lr_rest.Connection('172.16.87.153')
+
+# get
 print(client.get('/config/system/hostname'))
 
 # set
@@ -20,6 +22,8 @@ client.put('/config/system/hostname', 'NEW_HOSTNAME')
 
 ```python
 import LinerateRestClient as lr_rest
+
+client = lr_rest.Connection('172.16.87.157')
 
 client.write_mem()
 ```
