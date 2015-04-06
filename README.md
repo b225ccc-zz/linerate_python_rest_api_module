@@ -3,15 +3,25 @@ An interface to the [LineRate](https://linerate.f5.com/) REST API
 
 ## Example
 
-```
+```python
 import LinerateRestClient as lr_rest
 
 # get
 client = lr_rest.Connection('172.16.87.153')
-print client.get('/config/system/hostname')
+print(client.get('/config/system/hostname'))
 
 # set
 client.put('/config/system/hostname', 'NEW_HOSTNAME')
+```
+
+## Convenience functions
+
+### write_mem()
+
+```python
+import LinerateRestClient as lr_rest
+
+client.write_mem()
 ```
 
 ## Notes

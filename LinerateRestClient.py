@@ -169,5 +169,10 @@ class Connection(object):
             raise RestError(r.status_code, r.text, r)
 
 
+    def write_mem(self):
+        self.put('/exec/system/util/copy', 'running-config|startup-config')
+
+
+
 if __name__ == "__main__":
     pass
