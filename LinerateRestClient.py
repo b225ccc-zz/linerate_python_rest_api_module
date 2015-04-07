@@ -114,8 +114,10 @@ class Connection(object):
                 self.sid_cookie = {'connect.sid': r.cookies['connect.sid']}
 
 
-    def get(self, node):
+    def get(self, node, query=''):
         path = self.rest_url + node
+        if query:
+            path = path + '?' + query 
         try:
             r = self.session.get(path,
                                  cookies=self.sid_cookie,
@@ -173,6 +175,9 @@ class Connection(object):
 
     def write_mem(self):
         return self.put('/exec/system/util/copy', 'running-config|startup-config')
+
+    def get_version(self):
+        return self.get('/status/system/version')
 
 
 if __name__ == "__main__":

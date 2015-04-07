@@ -18,6 +18,15 @@ client.put('/config/system/hostname', 'NEW_HOSTNAME')
 
 ## Convenience functions
 
+### get_version()
+```python
+import LinerateRestClient as lr_rest
+
+client = lr_rest.Connection('172.16.87.157')
+
+client.get_version()
+```
+
 ### write_mem()
 
 ```python
